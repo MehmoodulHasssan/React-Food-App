@@ -9,44 +9,52 @@ import { useRouter } from 'next/navigation'
 
 const AdminPanel = () => {
     const router = useRouter()
-    const [selectedState, setSelectedState] = useState(null)
     const [clickedOrder, setClickedOrder] = useState(null)
+    const [detailedOrder, setDetailedOrder] = useState(null)
     const { isLoading: isPostLoading, isError: isPostError, isSuccess: isPostSuccess, postData, setIsError, setIsSuccess } = usePost()
-    const { isLoading, isError, data, fetchData } = useFetch()
+    const { isLoading: wholeLoading, isError: wholeError, data: wholeData, fetchData: wholeFetch } = useFetch()
+    const { isSuccess: gotDetails, setIsSuccess: setGotDetails, isError: detailsError, isLoading: gettingDetails, data: orderDetails, fetchData: fetchDetails } = useFetch()
+
     useEffect(() => {
         const url = 'http://localhost:8080/admin/orders'
-        fetchData(url)
+        wholeFetch(url)
     }, [])
 
-    if (isError.data?.msg === 'noAccess') {
+    if (wholeError.data?.msg === 'noAccess') {
         return router.push('/admin/login')
     }
-    if (isError.data?.msg === 'isCustomer') {
+    if (wholeError.data?.msg === 'isCustomer') {
         return router.push('/user/order-food')
     }
 
     const onApprove = async () => {
-        postData({ url: 'http://localhost:8080/admin/approve', data: clickedOrder })
+        postData({ url: `http://localhost:8080/admin/approve/${clickedOrder._id}` })
     }
     const onDecline = async () => {
-        postData({ url: 'http://localhost:8080/admin/decline', data: clickedOrder })
+        postData({ url: `http://localhost:8080/admin/decline/${clickedOrder._id}` })
     }
     if (isPostSuccess) {
-        fetchData('http://localhost:8080/admin/orders')
+        wholeFetch('http://localhost:8080/admin/orders')
         setClickedOrder(null)
         setIsSuccess(false)
     }
-    const handleDetails = async ({ order, state }) => {
-        setClickedOrder(order)
-        setSelectedState(state)
+    const handleDetails = async (order) => {
+        fetchDetails(`http://localhost:8080/admin/order-details/${order._id}`)
     }
+
+    if (gotDetails) {
+        setClickedOrder(orderDetails.data)
+        setGotDetails(false)
+    }
+    console.log(orderDetails)
+    // console.log(wholeData)
 
     return (
         <>
             <AdminNavBar />
             <div className='flex'>
                 <SideBar
-                    orderItems={data && data.data}
+                    orderItems={wholeData && wholeData.data}
                     handleDetails={handleDetails}
                     clickedOrder={clickedOrder}
                     setClickedOrder={setClickedOrder}
@@ -54,7 +62,6 @@ const AdminPanel = () => {
 
                 <OrdersUi
                     order={clickedOrder}
-                    state={selectedState}
                     onApprove={onApprove}
                     onDecline={onDecline}
                     isLoading={isPostLoading}

@@ -24,6 +24,7 @@ export default function SideBar({ orderItems, handleDetails, clickedOrder, setCl
         }
     }, [orderItems, selectedState])
 
+    // console.log(orderItems)
 
     function handleClickPending() {
         setSelectedState('pending')
@@ -55,11 +56,13 @@ export default function SideBar({ orderItems, handleDetails, clickedOrder, setCl
             </div>
             <ul className="flex-col mt-[5.8rem] p-7 -z-10">
                 {displayOrders.length > 0 && displayOrders.map((order, index) => {
-                    return <li key={index} onClick={() => { handleDetails({ order, state: selectedState }) }} className={`flex flex-col mt-2 p-2 text-customDark rounded-lg hover:bg-white hover:translate-x-1 hover:cursor-pointer ${order === clickedOrder ? 'bg-white translate-x-1' : 'bg-modal'}`}>
-                        <h1 className='font-extrabold'>{order.customerDetails.fullName}</h1>
+                    return <li
+                        key={index}
+                        onClick={() => { handleDetails(order) }} className={`flex flex-col mt-2 p-2 text-customDark rounded-lg hover:bg-white hover:translate-x-1 hover:cursor-pointer ${order === clickedOrder ? 'bg-white translate-x-1' : 'bg-modal'}`}>
+                        <h1 className='font-extrabold'>{order.user.fullName}</h1>
                         <div className='flex justify-between'>
-                            <p className='flex items-center text-sm'><CiTimer />{dateToTime(order.time)}</p>
-                            <span className='font-semibold'>${order.totalPrice}</span>
+                            <p className='flex items-center text-sm'><CiTimer />{dateToTime(order.createdAt)}</p>
+                            <span className='font-semibold'>${Number(order.totalPrice).toFixed(2)}</span>
                         </div>
                     </li>
                 })}

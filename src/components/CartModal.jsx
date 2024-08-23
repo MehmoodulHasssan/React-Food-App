@@ -14,14 +14,16 @@ const CartModal = forwardRef(({ currentItems, onPlus, onMinus, emptyItems }, ref
     const alertRef = useRef()
 
     function handleClick() {
-        const data = {
-            totalPrice: totalPrice(currentItems),
-            items: currentItems
-        }
-        console.log(data)
+        const items = currentItems.map(item => ({
+            foodItem: item._id,
+            price: +item.price * +item.quantity,
+            quantity: item.quantity
+        }))
+
+        console.log(items)
         if (currentItems.length !== 0) {
             if (confirm('Are you sure to place order?')) {
-                postData({ url: 'http://localhost:8080/user/place-order', data })
+                postData({ url: 'http://localhost:8080/user/place-order', data: items })
             }
         } else {
             alert('Please select items and then proceed your order...')

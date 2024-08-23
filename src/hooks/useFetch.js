@@ -6,19 +6,24 @@ axios.defaults.withCredentials = true;
 const useFetch = () => {
   const [data, setData] = useState();
   const [isLoading, setIsLoading] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
   const [isError, setIsError] = useState({
     status: false,
     data: '',
   });
 
   async function fetchData(url) {
+    setIsError({
+      status: false,
+      data: '',
+    });
+    setIsSuccess(false);
     try {
       setIsLoading(true);
       const res = await axios.get(url);
       const resData = res.data;
-      // console.log(resData);
       setData(resData);
-      setIsLoading(false);
+      setIsSuccess(true);
       setIsError(false);
     } catch (error) {
       console.log(error.response?.data || error.message);
@@ -26,6 +31,8 @@ const useFetch = () => {
         status: true,
         data: error.response?.data || error.message,
       });
+    } finally {
+      setIsLoading(false);
     }
   }
   return {
@@ -33,6 +40,8 @@ const useFetch = () => {
     isLoading,
     isError,
     fetchData,
+    isSuccess,
+    setIsSuccess,
   };
 };
 

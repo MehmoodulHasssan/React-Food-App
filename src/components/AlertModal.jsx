@@ -2,6 +2,7 @@ import { forwardRef } from 'react'
 
 const AlertModal = forwardRef(
     ({ errorMsg }, ref) => {
+        console.log(errorMsg)
         return (
             <dialog ref={ref} className='rounded-lg backdrop:bg-black/70'>
                 <div className='flex flex-col w-96 bg-modal py-6 px-3 font-raleway'>

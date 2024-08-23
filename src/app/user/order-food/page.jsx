@@ -58,7 +58,7 @@ const OrderFoodPage = () => {
             return [{ ...item, quantity: 1 }, ...prev]
         })
     }
-    console.log(foodItems)
+    // console.log(foodItems)
 
 
     return (

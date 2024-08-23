@@ -17,6 +17,7 @@ const CartBody = ({ onAddItem }) => {
         return router.push('/admin/orders')
     }
 
+    // console.log(data)
 
     return (
         <>
@@ -27,7 +28,7 @@ const CartBody = ({ onAddItem }) => {
                     :
                     <div className='grid mt-40 w-7/12 mx-auto grid-cols-3 gap-3'>
                         {data && data.map((item, index) => {
-                            return <div key={index} className='flex flex-col ring-1 h-[28rem] bg-cart rounded-lg'>
+                            return <div key={item._id} className='flex flex-col ring-1 h-[28rem] bg-cart rounded-lg'>
                                 <div>
                                     <Image width={300} height={300} src={`/${item.image}`} alt="item-img" />
 
