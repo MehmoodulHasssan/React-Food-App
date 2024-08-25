@@ -14,7 +14,7 @@ const SignupForm = () => {
         data.forEach((value, key) => {
             formData[key] = value;
         });
-        await postData({url:'https://food-order-backend-tan.vercel.app//user/signup', data:formData})
+        await postData({url:'https://food-order-backend-tan.vercel.app/user/signup', data:formData})
     }
     if (isSuccess) {
         router.push('/user/email-sent')
@@ -75,7 +75,7 @@ const SignupForm = () => {
 export default SignupForm
 
         // try {
-        //     const res = await axios.post('https://food-order-backend-tan.vercel.app//user/signup', formData)
+        //     const res = await axios.post('https://food-order-backend-tan.vercel.app/user/signup', formData)
         //     if (res.status === 400) {
         //         console.log(res.data)
         //         return
