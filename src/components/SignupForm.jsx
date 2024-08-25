@@ -14,7 +14,7 @@ const SignupForm = () => {
         data.forEach((value, key) => {
             formData[key] = value;
         });
-        await postData({url:'http://localhost:8080/user/signup', data:formData})
+        await postData({url:'https://food-order-backend-tan.vercel.app//user/signup', data:formData})
     }
     if (isSuccess) {
         router.push('/user/email-sent')
@@ -50,14 +50,14 @@ const SignupForm = () => {
                         <input type="text" id='address' name='address' className='px-1 rounded-sm h-6 text-black' required />
                     </div>
                     <ul>
-                {Array.isArray(isError.data?.error) ? (
-                isError.data.error.map((item, index) => (
+                {isError && Array.isArray(isError?.data) ? (
+                isError.message.error.map((err, index) => (
                 <li key={index} className="text-sm text-red-500 list-none">
-          {item.path}: {item.msg}
+          {err.path}: {err.msg}
         </li>
       ))
     ) : (
-      <li className="text-sm text-red-500 list-none">{isError.data?.msg}</li>
+      <li className="text-sm text-red-500 list-none">{isError?.message}</li>
     )}
   </ul>
                 <div className='flex justify-center mt-4 w-full text-md text-white font-bold'>
@@ -75,7 +75,7 @@ const SignupForm = () => {
 export default SignupForm
 
         // try {
-        //     const res = await axios.post('http://localhost:8080/user/signup', formData)
+        //     const res = await axios.post('https://food-order-backend-tan.vercel.app//user/signup', formData)
         //     if (res.status === 400) {
         //         console.log(res.data)
         //         return

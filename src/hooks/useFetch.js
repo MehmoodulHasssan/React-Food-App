@@ -7,16 +7,10 @@ const useFetch = () => {
   const [data, setData] = useState();
   const [isLoading, setIsLoading] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
-  const [isError, setIsError] = useState({
-    status: false,
-    data: '',
-  });
+  const [isError, setIsError] = useState(false);
 
   async function fetchData(url) {
-    setIsError({
-      status: false,
-      data: '',
-    });
+    setIsError(false);
     setIsSuccess(false);
     try {
       setIsLoading(true);
@@ -27,10 +21,7 @@ const useFetch = () => {
       setIsError(false);
     } catch (error) {
       console.log(error.response?.data || error.message);
-      setIsError({
-        status: true,
-        data: error.response?.data || error.message,
-      });
+      setIsError(error.response?.data || error.message);
     } finally {
       setIsLoading(false);
     }

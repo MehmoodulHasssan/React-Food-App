@@ -7,7 +7,7 @@ const CartBody = ({ onAddItem }) => {
     const router = useRouter()
     const { isLoading, isError, data, fetchData } = useFetch()
     useEffect(() => {
-        fetchData('http://localhost:8080/user/items')
+        fetchData('https://food-order-backend-tan.vercel.app//user/items')
     }, [])
 
     if (isError.data?.msg === 'noAccess') {
@@ -21,7 +21,7 @@ const CartBody = ({ onAddItem }) => {
 
     return (
         <>
-            {isError.status === true ? <div className='mt-40 font-bold text-2xl text-center text-yellow-500'>Failed To Fetch Items, try again...</div> :
+            {isError ? <div className='mt-40 font-bold text-2xl text-center text-yellow-500'>Failed To Fetch Items, try again...</div> :
                 isLoading ? <div className='flex items-center justify-center min-h-screen bg-customDark-100'>
                     <div className="spinner w-16 h-16 border-4 border-yellow-500 border-t-transparent rounded-full animate-spin"></div>
                 </div>

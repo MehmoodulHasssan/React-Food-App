@@ -15,20 +15,11 @@ const usePatch = () => {
     setIsLoading(true);
     try {
       const res = await axios.patch(url, data);
-      if (res.status === 400) {
-        console.log(res.data);
-        return;
-      }
-      if (res.status === 201 || 200) {
-        console.log(res.data);
-        setResData(res.data);
-        setIsSuccess(true);
-      }
-      if (res.status === 500) {
-        throw new Error('Server error');
-      }
+      console.log(res.data);
+      setResData(res.data);
+      setIsSuccess(true);
     } catch (error) {
-      setIsError(true);
+      setIsError(error.response?.data || error.message);
       console.log('Error:', error.response?.data || error.message);
     } finally {
       setIsLoading(false);

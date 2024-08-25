@@ -23,7 +23,7 @@ const CartModal = forwardRef(({ currentItems, onPlus, onMinus, emptyItems }, ref
         console.log(items)
         if (currentItems.length !== 0) {
             if (confirm('Are you sure to place order?')) {
-                postData({ url: 'http://localhost:8080/user/place-order', data: items })
+                postData({ url: 'https://food-order-backend-tan.vercel.app//user/place-order', data: items })
             }
         } else {
             alert('Please select items and then proceed your order...')
@@ -80,7 +80,7 @@ const CartModal = forwardRef(({ currentItems, onPlus, onMinus, emptyItems }, ref
                 </div>
             </dialog>
             <SuccessModal ref={successRef} />
-            <AlertModal errorMsg={isError.data?.msg} ref={alertRef} />
+            <AlertModal errorMsg={isError?.message} ref={alertRef} />
         </>
     )
 })

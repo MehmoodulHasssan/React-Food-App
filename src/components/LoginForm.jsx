@@ -15,7 +15,7 @@ const LoginForm = ({ type }) => {
 
     const handleForgotPassword = async () => {
         const email = emailText.current.value
-        forgotPost({ url: 'http://localhost:8080/user/forgot-password', data: { email: email } })
+        forgotPost({ url: 'https://food-order-backend-tan.vercel.app//user/forgot-password', data: { email: email } })
     }
 
     forgotSuccess && router.push('/user/verifypassword')
@@ -28,9 +28,9 @@ const LoginForm = ({ type }) => {
             formData[key] = value;
         });
         if (type === 'customer') {
-            await postData({ url: 'http://localhost:8080/user/login', data: formData })
+            await postData({ url: 'https://food-order-backend-tan.vercel.app//user/login', data: formData })
         } else {
-            await postData({ url: 'http://localhost:8080/admin/login', data: formData })
+            await postData({ url: 'https://food-order-backend-tan.vercel.app//admin/login', data: formData })
         }
 
     }
@@ -57,8 +57,8 @@ const LoginForm = ({ type }) => {
                         <label htmlFor="password">Password</label>
                         <input type="password" id='password' name='password' className='px-1 rounded-sm h-6 text-black' required />
                     </div>
-                    {isError.state && <span className='text-red-700 text-sm'>{isError.data?.msg}</span>}
-                    {forgotError.state && <span className='text-red-700 text-sm'>{forgotError.data?.msg}</span>}
+                    {isError && <span className='text-red-700 text-sm'>{isError?.message}</span>}
+                    {forgotError && <span className='text-red-700 text-sm'>{forgotError?.message}</span>}
                 </div>
                 {type === 'customer' && <button onClick={handleForgotPassword} type='button' className='text-white font-bold text-right text-sm hover:text-modal'>{forgotLoading ? 'Please wait...' : 'forgot password?'}</button>}
                 <div className='flex justify-center mt-4 w-full text-md text-white font-bold'>
