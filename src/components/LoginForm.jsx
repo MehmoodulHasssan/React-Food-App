@@ -28,7 +28,7 @@ const LoginForm = ({ type }) => {
             formData[key] = value;
         });
         if (type === 'customer') {
-            await postData({ url: 'https://food-order-backend-ic3oo2j95-mehmoodulhasssans-projects.vercel.app/user/login', data: formData })
+            await postData({ url: 'https://food-order-backend-tan.vercel.app/user/login', data: formData })
         } else {
             await postData({ url: 'https://food-order-backend-tan.vercel.app/admin/login', data: formData })
         }
