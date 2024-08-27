@@ -16,15 +16,9 @@ const usePost = () => {
     setIsLoading(true);
     try {
       const res = await axios.post(url, data);
-      if (res.status === 400) {
-        console.log(res.data);
-        return;
-      }
-      if (res.status === 201 || 200) {
-        console.log(res.data);
-        setResData(res.data);
-        setIsSuccess(true);
-      }
+      console.log(res.data);
+      setResData(res.data);
+      setIsSuccess(true);
     } catch (error) {
       setIsError(error.response?.data || error.message);
       console.log(error.response?.data || error.message);

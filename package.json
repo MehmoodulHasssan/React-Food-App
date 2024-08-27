@@ -8,6 +8,7 @@
     "start": "next start",
     "lint": "next lint"
   },
+   "proxy": "https://food-order-backend-tan.vercel.app",
   "dependencies": {
     "@reduxjs/toolkit": "^2.2.6",
     "axios": "^1.7.2",

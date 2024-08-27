@@ -13,7 +13,7 @@ const VerifyEmailPage = () => {
     useEffect(() => {
         console.log(process.env.BACKEND_DOMAIN)
         const search = window.location.search
-        const url = 'https://food-order-backend-tan.vercel.app/user/verifyemail' + search
+        const url = '/user/verifyemail' + search
         console.log(url)
         patchData({ url, data: '' })
     }, [])

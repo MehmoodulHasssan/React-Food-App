@@ -16,7 +16,7 @@ const NewPassword = () => {
         }
         const url = new URL(window.location.href)
         const token = url.searchParams.get('token')
-        postData({ url: 'https://food-order-backend-tan.vercel.app/user/new-password', data: { password: data['new-password'], token: token } })
+        postData({ url: '/user/new-password', data: { password: data['new-password'], token: token } })
     }
     if (isSuccess) {
         return router.push('/user/login')

@@ -7,7 +7,7 @@ const CartBody = ({ onAddItem }) => {
     const router = useRouter()
     const { isLoading, isError, data, fetchData } = useFetch()
     useEffect(() => {
-        fetchData('https://food-order-backend-tan.vercel.app/user/items')
+        fetchData('/user/items')
     }, [])
 
     if (isError.data?.msg === 'noAccess') {
