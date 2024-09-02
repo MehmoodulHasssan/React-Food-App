@@ -14,7 +14,7 @@ const SignupForm = () => {
         data.forEach((value, key) => {
             formData[key] = value;
         });
-        await postData({url:'/user/signup', data:formData})
+        await postData({url:'https://food-order-backend-tan.vercel.app/user/signup', data:formData})
     }
     if (isSuccess) {
         router.push('/user/email-sent')

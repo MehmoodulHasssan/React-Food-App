@@ -12,7 +12,7 @@ const AdminNavBar = () => {
     const routert = useRouter()
     const { isSuccess, postData } = usePost()
     const handleLogout = () => {
-        postData({ url: '/user/logout', data: '' })
+        postData({ url: 'https://food-order-backend-tan.vercel.app/user/logout', data: '' })
     }
     if (isSuccess) {
         dispatch(stateActions.logout())

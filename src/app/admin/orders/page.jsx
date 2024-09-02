@@ -16,7 +16,7 @@ const AdminPanel = () => {
     const { isSuccess: gotDetails, setIsSuccess: setGotDetails, isError: detailsError, isLoading: gettingDetails, data: orderDetails, fetchData: fetchDetails } = useFetch()
 
     useEffect(() => {
-        const url = '/admin/orders'
+        const url = 'https://food-order-backend-tan.vercel.app/admin/orders'
         wholeFetch(url)
     }, [])
 
@@ -28,10 +28,10 @@ const AdminPanel = () => {
     }
 
     const onApprove = async () => {
-        postData({ url: `/admin/approve/${clickedOrder._id}` })
+        postData({ url: `https://food-order-backend-tan.vercel.app/admin/approve/${clickedOrder._id}` })
     }
     const onDecline = async () => {
-        postData({ url: `/admin/decline/${clickedOrder._id}` })
+        postData({ url: `https://food-order-backend-tan.vercel.app/admin/decline/${clickedOrder._id}` })
     }
     if (isPostSuccess) {
         wholeFetch('/admin/orders')
