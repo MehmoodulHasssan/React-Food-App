@@ -6,8 +6,8 @@ import { CURRENT_STATES } from '@/store/currentState'
 
 const HomeUi = ({ state }) => {
     return (
-        <div className='flex mt-32 justify-evenly items-center'>
-            <div className='text-white font-extrabold text-3xl'>
+        <div className='flex flex-col lg:flex-row mt-32 justify-evenly items-center'>
+            <div className='text-white font-extrabold text-xl mt-[45px] lg:mt-0 lg:3xl'>
                 <h1 className='text-yellow-500'>Hungryy!!</h1>
                 <h1 className='mt-2'>Your are at the right place</h1>
                 {state === CURRENT_STATES.LOGOUT && <>

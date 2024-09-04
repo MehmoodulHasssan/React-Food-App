@@ -26,11 +26,11 @@ const CartBody = ({ onAddItem }) => {
                     <div className="spinner w-16 h-16 border-4 border-yellow-500 border-t-transparent rounded-full animate-spin"></div>
                 </div>
                     :
-                    <div className='grid mt-40 w-7/12 mx-auto grid-cols-3 gap-3'>
+                    <div className='grid mt-40 w-full px-6 lg:px-0 lg:w-7/12 mx-auto grid-col-1 lg:grid-cols-3 gap-3'>
                         {data && data.map((item, index) => {
-                            return <div key={item._id} className='flex flex-col ring-1 h-[28rem] bg-cart rounded-lg'>
+                            return <div key={item._id} className='flex flex-col ring-1  bg-cart rounded-lg'>
                                 <div>
-                                    <Image width={300} height={300} src={`/${item.image}`} alt="item-img" />
+                                    <Image objectFit='cover' objectPosition='center' layout='responsive' width={1} height={1} src={`/${item.image}`} alt="item-img" />
 
                                 </div>
                                 <div className='flex flex-col justify-between h-full items-center'>

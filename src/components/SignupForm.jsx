@@ -21,7 +21,7 @@ const SignupForm = () => {
     }
     console.log(isError)
     return (
-        <div className='rounded-lg w-2/6 p-4 mx-auto mt-32'>
+        <div className='rounded-lg w-full lg:w-2/6 p-4 mx-auto mt-32'>
             <form onSubmit={onSingup} className='flex flex-col  font-raleway'>
                 <h1 className='font-extrabold text-lg text-center'>Sign-Up Form</h1>
                 <div className='grid gap-y-2 text-xs py-2 font-bold'>
